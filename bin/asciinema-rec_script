@@ -4,6 +4,13 @@
 #   screencast=/tmp/foo.cast asciinema-rec_script screencasts/staff-service-01
 #
 # This will run the script and record a screencast of it with inlined code & comments.
+#
+# NOTE: Install bat, details on:
+#       https://github.com/sharkdp/bat#on-ubuntu-using-most-recent-deb-packages
+#
+# wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb
+# sudo apt install ./bat-musl_0.22.1_amd64.deb
+#
 
 set -uo pipefail
 
@@ -161,7 +168,7 @@ LINE
 
 syntax_highlighter() {
   if command -v bat &> /dev/null; then
-    echo "bat --color=always --style=${BAT_STYLE:-plain} --language=${BAT_LANGUAGE:-bash}"
+    echo "bat --theme='${BAT_THEME:-default}' --color=always --style=${BAT_STYLE:-plain} --language=${BAT_LANGUAGE:-bash}"
   else
     echo cat
   fi
@@ -169,7 +176,7 @@ syntax_highlighter() {
 
 markdown_highlighter() {
   if command -v bat &> /dev/null; then
-    echo "bat --color=always --style=${BAT_STYLE:-plain} --language=markdown"
+    echo "bat --theme="${BAT_THEME:-default}" --color=always --style=${BAT_STYLE:-plain} --language=markdown"
   else
     echo cat
   fi
