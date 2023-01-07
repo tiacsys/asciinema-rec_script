@@ -16,6 +16,7 @@ export COMMENT="${COMMENT:-"💭 [3;1m"}"
 export ECHO="${ECHO:-"💬 [3;1m"}"
 export BEGIN_RECORDING="${BEGIN_RECORDING:-"🎥 [32;3mBegin recording - [1m"}"
 export END_RECORDING="${END_RECORDING:-"🎬 [32;3mEnd recording - [1m"}"
+export DIVIDING_LINE="[3;1m$(printf '–%.0s' {1..40})[0m"
 export VERSION="${VERSION:-$(cat "${BASH_SOURCE[0]%/*}/../version.txt")}"
 
 
@@ -78,9 +79,11 @@ build_augmented_script() { local script="$1"
 
   begin_recording() {
     echo "${BEGIN_RECORDING}${1##*/}[0m"
+    echo "${DIVIDING_LINE}"
   }
 
   end_recording() {
+    echo "${DIVIDING_LINE}"
     echo "${END_RECORDING}${1##*/}[0m"
     # OFF # echo "(Powered by https://github.com/zechris/asciinema-rec_script ${VERSION})"
   }
