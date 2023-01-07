@@ -79,7 +79,10 @@ build_augmented_script() { local script="$1"
       *)
         printf "%s" "${PROMPT}"
         type_out "$(echo "$1" | $CAT)"
+        cur_shopt_expand_aliases=$(shopt -p expand_aliases)
+        shopt -s expand_aliases
         eval "$1"
+        eval "$cur_shopt_expand_aliases"
       ;;
     esac
   }
