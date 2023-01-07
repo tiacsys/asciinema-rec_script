@@ -14,7 +14,10 @@
 
 set -uo pipefail
 
+
+set -x
 REC_ARGS="${RECORD_ARGS:---idle-time-limit 1 --overwrite}"
+set +x
 
 
 # Nb. these can all be overriden from the command line if you don't like the defaults..
